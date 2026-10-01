@@ -1,13 +1,13 @@
-const form = document.querySelector("#expense-form");
+const form = document.querySelector("#expensee-form");
 const descriptionInput = document.querySelector("#description");
 const amountInput = document.querySelector("#amount");
 const categoryInput = document.querySelector("#category");
 const dateInput = document.querySelector("#date");
-const expenseList = document.querySelector("#expense-list");
+const expenseList = document.querySelector("#expensee-list");
 const totalDisplay = document.querySelector("#total");
 const emptyMessage = document.querySelector("#empty-message");
 
-let expenses = JSON.parse(localStorage.getItem("expenses") || "[]");
+let expensees = JSON.parse(localStorage.getItem("expensees") || "[]");
 
 const money = new Intl.NumberFormat("en-IN", {
   style: "currency",
@@ -17,26 +17,26 @@ const money = new Intl.NumberFormat("en-IN", {
 // Set the date field to today.
 dateInput.value = new Date().toLocaleDateString("en-CA");
 
-function saveExpenses() {
-  localStorage.setItem("expenses", JSON.stringify(expenses));
+function saveExpensees() {
+  localStorage.setItem("expensees", JSON.stringify(expensees));
 }
 
-function renderExpenses() {
-  expenseList.replaceChildren();
+function renderExpensees() {
+  expenseeList.replaceChildren();
 
   let total = 0;
 
-  expenses.forEach((expense) => {
-    total += expense.amount;
+  expensees.forEach((expensee) => {
+    total += expensee.amount;
 
     const item = document.createElement("li");
 
     const details = document.createElement("span");
     details.textContent =
-      `${expense.description} · ${expense.category} · ${expense.date}`;
+      `${expensee.description} · ${expensee.category} · ${expensee.date}`;
 
     const amount = document.createElement("strong");
-    amount.textContent = money.format(expense.amount);
+    amount.textContent = money.format(expensee.amount);
 
     const deleteButton = document.createElement("button");
     deleteButton.type = "button";
@@ -44,21 +44,21 @@ function renderExpenses() {
     deleteButton.textContent = "Delete";
     deleteButton.setAttribute(
       "aria-label",
-      `Delete ${expense.description}`
+      `Delete ${expensee.description}`
     );
 
     deleteButton.addEventListener("click", () => {
-      expenses = expenses.filter((entry) => entry.id !== expense.id);
-      saveExpenses();
-      renderExpenses();
+      expensees = expensees.filter((entry) => entry.id !== expensee.id);
+      saveExpensees();
+      renderExpensees();
     });
 
     item.append(details, amount, deleteButton);
-    expenseList.append(item);
+    expenseeList.append(item);
   });
 
   totalDisplay.textContent = money.format(total);
-  emptyMessage.hidden = expenses.length > 0;
+  emptyMessage.hidden = expensees.length > 0;
 }
 
 form.addEventListener("submit", (event) => {
@@ -71,7 +71,7 @@ form.addEventListener("submit", (event) => {
     return;
   }
 
-  expenses.unshift({
+  expensees.unshift({
     id: crypto.randomUUID(),
     description,
     amount,
@@ -79,8 +79,8 @@ form.addEventListener("submit", (event) => {
     date: dateInput.value
   });
 
-  saveExpenses();
-  renderExpenses();
+  saveExpensees();
+  renderExpensees();
   form.reset();
   dateInput.value = new Date().toLocaleDateString("en-CA");
 });

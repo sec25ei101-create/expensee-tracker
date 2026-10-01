@@ -3,25 +3,25 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Expense Tracker</title>
+  <title>Expensee Tracker</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <main class="app">
     <header>
       <p class="eyebrow">PERSONAL FINANCE</p>
-      <h1>Expense Tracker</h1>
+      <h1>Expensee Tracker</h1>
       <p class="subtitle">Keep track of where your money goes.</p>
     </header>
 
-    <section class="summary" aria-label="Expense summary">
-      <p>Total expenses</p>
+    <section class="summary" aria-label="Expensee summary">
+      <p>Total expensees</p>
       <strong id="total">₹0.00</strong>
     </section>
 
     <section class="panel">
-      <h2>Add an expense</h2>
-      <form id="expense-form">
+      <h2>Add an expensee</h2>
+      <form id="expensee-form">
         <label for="description">What was it for?</label>
         <input id="description" type="text" placeholder="For example, lunch" required>
 
@@ -41,14 +41,14 @@
         <label for="date">Date</label>
         <input id="date" type="date" required>
 
-        <button type="submit">Add expense</button>
+        <button type="submit">Add expensee</button>
       </form>
     </section>
 
     <section class="panel">
-      <h2>Your expenses</h2>
-      <ul id="expense-list" aria-live="polite"></ul>
-      <p id="empty-message">No expenses yet. Add one above to get started.</p>
+      <h2>Your expensees</h2>
+      <ul id="expensee-list" aria-live="polite"></ul>
+      <p id="empty-message">No expensees yet. Add one above to get started.</p>
     </section>
   </main>
 

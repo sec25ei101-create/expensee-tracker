@@ -3,7 +3,7 @@ const descriptionInput = document.querySelector("#description");
 const amountInput = document.querySelector("#amount");
 const categoryInput = document.querySelector("#category");
 const dateInput = document.querySelector("#date");
-const expenseList = document.querySelector("#expensee-list");
+const expenseeList = document.querySelector("#expensee-list");
 const totalDisplay = document.querySelector("#total");
 const emptyMessage = document.querySelector("#empty-message");
 
@@ -14,7 +14,6 @@ const money = new Intl.NumberFormat("en-IN", {
   currency: "INR"
 });
 
-// Set the date field to today.
 dateInput.value = new Date().toLocaleDateString("en-CA");
 
 function saveExpensees() {
@@ -42,10 +41,6 @@ function renderExpensees() {
     deleteButton.type = "button";
     deleteButton.className = "delete-button";
     deleteButton.textContent = "Delete";
-    deleteButton.setAttribute(
-      "aria-label",
-      `Delete ${expensee.description}`
-    );
 
     deleteButton.addEventListener("click", () => {
       expensees = expensees.filter((entry) => entry.id !== expensee.id);
@@ -72,7 +67,7 @@ form.addEventListener("submit", (event) => {
   }
 
   expensees.unshift({
-    id: crypto.randomUUID(),
+    id: Date.now().toString() + Math.random(),
     description,
     amount,
     category: categoryInput.value,

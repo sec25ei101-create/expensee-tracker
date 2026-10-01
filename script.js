@@ -85,4 +85,4 @@ form.addEventListener("submit", (event) => {
   dateInput.value = new Date().toLocaleDateString("en-CA");
 });
 
-renderExpenses();
+renderExpensees();
